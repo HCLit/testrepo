@@ -18,6 +18,9 @@ NAME                               READY   STATUS    RESTARTS   AGE
 hello-minikube1-6bdbd54bc4-rspj8   1/1     Running   0          102s
 tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=80 --target-port=8080
 service/hello-minikube1 exposed
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl get service hello-minikube1
+NAME              TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+hello-minikube1   LoadBalancer   10.102.162.176   <pending>     80:31305/TCP   22m
 tridibhazarika@Tridibs-MacBook-Air-2 testrepo % minikube service hello-minikube1 --url
 
 http://127.0.0.1:58922
