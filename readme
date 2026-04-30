@@ -1,0 +1,23 @@
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl apply -f deployment.yaml 
+deployment.apps/hello-minikube1 created
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl get pods
+NAME                               READY   STATUS    RESTARTS   AGE
+hello-minikube1-6bdbd54bc4-rspj8   1/1     Running   0          8s
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl scale deployment hello-minikube1 --replicas=4
+deployment.apps/hello-minikube1 scaled
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl get pods                                     
+NAME                               READY   STATUS    RESTARTS   AGE
+hello-minikube1-6bdbd54bc4-9x5q8   1/1     Running   0          2s
+hello-minikube1-6bdbd54bc4-rspj8   1/1     Running   0          64s
+hello-minikube1-6bdbd54bc4-tnw44   1/1     Running   0          2s
+hello-minikube1-6bdbd54bc4-v9s7v   1/1     Running   0          2s
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl scale deployment hello-minikube1 --replicas=1
+deployment.apps/hello-minikube1 scaled
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl get pods                                     
+NAME                               READY   STATUS    RESTARTS   AGE
+hello-minikube1-6bdbd54bc4-rspj8   1/1     Running   0          102s
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=80 --target-port=8080
+service/hello-minikube1 exposed
+tridibhazarika@Tridibs-MacBook-Air-2 testrepo % minikube service hello-minikube1 --url
+
+http://127.0.0.1:58922
