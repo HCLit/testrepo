@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-minikube1
+  labels:
+    app: hello-minikube1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-minikube1
+  template:
+    metadata:
+      labels:
+        app: hello-minikube1
+    spec:
+      containers:
+      - name: echo-server
+        image: kicbase/echo-server:1.0
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
